@@ -9,7 +9,7 @@ from langchain.chains import LLMChain
 try:
     load_dotenv(encoding='utf-8')
 except UnicodeDecodeError:
-    st.error("⚠️ Error reading .env file. Make sure it's UTF-8 encoded.")
+    st.error("Error reading .env file. Make sure it's UTF-8 encoded.")
     raise
 
 # Get API keys from environment variables
@@ -18,11 +18,11 @@ langchain_api_key = os.getenv("LANGCHAIN_API_KEY")
 
 # Check if API keys are loaded properly
 if not openai_api_key:
-    st.error("❌ OPENAI_API_KEY not found in the .env file.")
+    st.error(" OPENAI_API_KEY not found in the .env file.")
     raise ValueError("OPENAI_API_KEY not found in .env file")
 
 if not langchain_api_key:
-    st.error("❌ LANGCHAIN_API_KEY not found in the .env file.")
+    st.error(" LANGCHAIN_API_KEY not found in the .env file.")
     raise ValueError("LANGCHAIN_API_KEY not found in .env file")
 
 # Set environment variables for Langchain
@@ -37,7 +37,7 @@ prompt = ChatPromptTemplate.from_messages([
 ])
 
 # Initialize Streamlit UI
-st.title('🧠 LangChain Demo with OpenAI API')
+st.title('LangChain Demo with OpenAI API')
 input_text = st.text_input("Ask a question or search a topic:")
 
 # Initialize LLM and chain
@@ -48,5 +48,5 @@ chain = LLMChain(prompt=prompt, llm=llm)
 if input_text:
     with st.spinner("Thinking..."):
         result = chain.run({'question': input_text})
-        st.write("💬 Response:")
+        st.write("Response:")
         st.write(result)
